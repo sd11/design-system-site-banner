@@ -2,6 +2,47 @@ import React from 'react';
 import styled from 'styled-components';
 import logo from './logo.svg';
 
+const SiteWideBanner = (props) => {
+  const { children, withClose, backgroundColor } = props;
+
+  return (
+    <div id="siteWideBanner">
+      <div>
+        <Container backgroundColor={backgroundColor}>
+          { children }
+          { withClose && <NoticeClose aria-controls="optus-breach-custome" aria-label="Dismiss"></NoticeClose> }
+        </Container>
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <div className="App">
+      <div>
+        <h3>SiteWideBanner 1</h3>
+        <SiteWideBanner withClose backgroundColor="#ffd34c">
+          <Paragraph><strong>Optus breach customers: </strong>
+            <a href="/transaction/replace-nsw-driver-licence-online">replace your driver licence online</a> or at a <a href="/service-centre">service centre</a>. <a href="/optus-breach">Read more</a>.
+          </Paragraph>
+        </SiteWideBanner>
+      </div>
+      <div>
+        <h3>SiteWideBanner 2</h3>
+        <SiteWideBanner backgroundColor="#f5e60c">
+          <RibbonIcon src={logo}/>
+          <Paragraph hasIcon>AlertVisit COVID-19 advice for the latest information.</Paragraph>
+        </SiteWideBanner>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+/** Styled Components */
+
 const Container = styled.div`
   background-color: ${p => p.backgroundColor};
   padding-inline-end: 50px;
@@ -46,42 +87,3 @@ const RibbonIcon = styled.img`
   display:inline-flex;
   vertical-align:middle;
 `;
-
-const SiteWideBanner = (props) => {
-  const { children, withClose, backgroundColor } = props;
-
-  return (
-    <div id="siteWideBanner">
-      <div>
-        <Container backgroundColor={backgroundColor}>
-          { children }
-          { withClose && <NoticeClose aria-controls="optus-breach-custome" aria-label="Dismiss"></NoticeClose> }
-        </Container>
-      </div>
-    </div>
-  );
-}
-
-function App() {
-  return (
-    <div className="App">
-      <div>
-        <h3>SiteWideBanner 1</h3>
-        <SiteWideBanner withClose backgroundColor="#ffd34c">
-          <Paragraph><strong>Optus breach customers: </strong>
-            <a href="/transaction/replace-nsw-driver-licence-online">replace your driver licence online</a> or at a <a href="/service-centre">service centre</a>. <a href="/optus-breach">Read more</a>.
-          </Paragraph>
-        </SiteWideBanner>
-      </div>
-      <div>
-        <h3>SiteWideBanner 2</h3>
-        <SiteWideBanner backgroundColor="#f5e60c">
-          <RibbonIcon src={logo}/>
-          <Paragraph hasIcon>AlertVisit COVID-19 advice for the latest information.</Paragraph>
-        </SiteWideBanner>
-      </div>
-    </div>
-  );
-}
-
-export default App;
