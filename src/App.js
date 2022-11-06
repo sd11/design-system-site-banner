@@ -17,6 +17,16 @@ const SiteWideBanner = (props) => {
   );
 }
 
+const SearchInput = (props) => {
+  const { placeholder, backgroundColor } = props;
+  return (
+    <Search backgroundColor={backgroundColor}>
+      <input type="text" class="input" placeholder={placeholder ? 'search' : ''}/>
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </Search>
+  );
+}
+
 function App() {
   return (
     <div className="App">
@@ -31,9 +41,17 @@ function App() {
       <div>
         <h3>SiteWideBanner 2</h3>
         <SiteWideBanner backgroundColor="#f5e60c">
-          <RibbonIcon src={logo}/>
+          <AlertIcon src={logo} alt="Alert Icon"/>
           <Paragraph hasIcon>AlertVisit COVID-19 advice for the latest information.</Paragraph>
         </SiteWideBanner>
+      </div>
+      <div>
+        <h3>SearchInput 1</h3>
+        <SearchInput placeholder/>
+      </div>
+      <div>
+        <h3>SearchInput 2</h3>
+        <SearchInput backgroundColor="#f2f2f2"/>
       </div>
     </div>
   );
@@ -81,9 +99,34 @@ const NoticeClose = styled.button`
   transform: translateY(-50%);
 `;
 
-const RibbonIcon = styled.img`
+const AlertIcon = styled.img`
   padding-left:20px;
   width:40px;
   display:inline-flex;
   vertical-align:middle;
+`;
+
+const Search = styled.div`
+  position: relative;
+  width: 300px;
+
+  input {
+    background: ${ p => p.backgroundColor || 'white'};
+    width: 100%;
+    padding: 20px 60px 20px 20px;
+    display: block;
+  }
+
+  button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 18px 0 18px 20px;
+    z-index: 2;
+  }
 `;
